@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>访问验证</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f4f4f4; }
+        .box { background: white; padding: 30px 25px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); text-align: center; max-width: 340px; width: 88%; }
+        h3 { margin-top: 0; color: #333; }
+        #question { color: #555; font-size: 15px; line-height: 1.5; }
+        input { width: 100%; padding: 11px; margin: 15px 0; box-sizing: border-box; border: 1px solid #ccc; border-radius: 6px; font-size: 15px; }
+        button { width: 100%; padding: 11px; background-color: #990000; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: bold; }
+        button:hover { background-color: #770000; }
+        #error { color: #d93025; font-size: 14px; display: none; margin-top: 12px; }
+        .tip { color: #888; font-size: 12px; line-height: 1.5; margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee; text-align: left; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h3>请回答问题以继续</h3>
+        <p id="question">问题：两人各自带的克隆人军团编号（六位数字）</p>
+        <input type="text" id="pwdInput" placeholder="请输入答案" onkeypress="if(event.key==='Enter') checkPwd()">
+        <button onclick="checkPwd()">确认跳转</button>
+        <p id="error">答案错误，请重试</p>
+        
+        <p class="tip">若跳转失败，请点击右上角选择『在默认浏览器中打开』，并确保网络环境可正常访问 AO3。</p>
+    </div>
+
+    <script>
+        function checkPwd() {
+            const input = document.getElementById('pwdInput').value.trim();
+            const correctPwd = "501212"; 
+            const targetUrl = "https://archiveofourown.org/works/96263066"; 
+
+            if (input === correctPwd) {
+                window.location.href = targetUrl;
+            } else {
+                document.getElementById('error').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
